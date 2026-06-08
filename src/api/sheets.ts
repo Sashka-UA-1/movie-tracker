@@ -49,10 +49,10 @@ export async function saveRating(
   rating: number
 ): Promise<void> {
   const url = new URL(SCRIPT_URL)
-  url.searchParams.set('action',    'rate')
-  url.searchParams.set('id',        id)
+  url.searchParams.set('action', 'rate')
+  url.searchParams.set('id', id)
   url.searchParams.set('profileId', profileId)
-  url.searchParams.set('rating',    String(rating))
+  url.searchParams.set('rating', String(rating))
 
   const res = await fetch(url.toString())
   if (!res.ok) throw new Error(`HTTP помилка: ${res.status}`)
