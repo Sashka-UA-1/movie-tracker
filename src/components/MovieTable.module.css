@@ -1,0 +1,246 @@
+/* ─────────────────────────────────────────────────────────────
+   src/components/MovieTable.module.css
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Вкладки ── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  color: var(--color-text-muted);
+  transition: background 0.12s, color 0.12s;
+}
+
+.tab:hover:not(.tabActive) {
+  color: var(--color-text);
+}
+
+.tabActive {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* ── Таблиця ── */
+.tableWrap {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Заголовки */
+.table th {
+  text-align: left;
+  padding: 9px 12px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  background: var(--color-surface-hover);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Підказка "авто" біля заголовка статусу */
+.autoHint {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.55;
+  margin-top: 1px;
+}
+
+/* Клітинки */
+.table td {
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.row:last-child td {
+  border-bottom: none;
+}
+
+.row:hover td {
+  background: var(--color-surface-hover);
+}
+
+/* ── Ширини колонок ── */
+.colTitle   { width: 22%; }
+.colType    { width: 14%; }
+.colNote    { width: 22%; }
+.colStatus  { width: 15%; }
+.colRating  { width: 7%; text-align: center; }
+.colActions { width: 6%; }
+
+/* ── Назва ── */
+.titleCell {
+  font-weight: 500;
+}
+
+/* ── Бейдж типу ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Кольори бейджів — мають збігатись з MediaType */
+.badge-movie   { background: #E6F1FB; color: #0C447C; }
+.badge-series  { background: #EEEDFE; color: #3C3489; }
+.badge-cartoon { background: #EAF3DE; color: #27500A; }
+
+/* ── Нотатка ── */
+.note {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.noteEmpty {
+  color: var(--color-text-muted);
+  opacity: 0.35;
+}
+
+/* ── Статус-пілюля ── */
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.statusWatched {
+  background: #EAF3DE;
+  color: #27500A;
+}
+
+.statusUnseen {
+  background: var(--color-surface-hover);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+/* Крапка-індикатор у пілюлі статусу */
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dotWatched { background: #639922; }
+.dotUnseen  { background: #B4B2A9; }
+
+/* ── Комірка оцінки ── */
+.ratingCell {
+  text-align: center;
+}
+
+.ratingNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  user-select: none;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+/* Є оцінка — трохи виділяємо */
+.hasVal {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+}
+
+/* Своя колонка — клікабельна */
+.editable {
+  cursor: pointer;
+}
+
+.editable:hover {
+  border-color: var(--color-border-focus);
+  color: var(--color-text);
+}
+
+/* Чужа колонка — лише читання */
+.readonly {
+  cursor: default;
+}
+
+/* ── Кнопки дій ── */
+.actions {
+  display: flex;
+  gap: 2px;
+}
+
+.iconBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.12s;
+}
+
+.iconBtn:hover {
+  background: var(--color-surface-hover);
+}
+
+.iconBtnDanger:hover {
+  background: #FCEBEB;
+}
+
+/* ── Порожній стан ── */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 3rem 1rem;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.emptyIcon {
+  font-size: 36px;
+  opacity: 0.35;
+}

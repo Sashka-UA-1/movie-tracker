@@ -1,0 +1,98 @@
+/* src/components/RatingModal.module.css */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.modal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+/* Назва фільму над заголовком */
+.movieTitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.heading {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+}
+
+.picker {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .12s, color .12s, border-color .12s;
+}
+
+.btn:hover { border-color: var(--color-border-hover); color: var(--color-text); }
+
+.selected {
+  background: var(--color-text);
+  color: var(--color-surface);
+  border-color: var(--color-text);
+}
+
+.footer {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btnCancel {
+  padding: 7px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .12s;
+}
+.btnCancel:hover { background: var(--color-surface-hover); }
+
+.btnSave {
+  padding: 7px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-text);
+  color: var(--color-surface);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity .12s;
+}
+.btnSave:hover { opacity: .85; }

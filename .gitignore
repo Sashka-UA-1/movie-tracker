@@ -1,0 +1,27 @@
+# Залежності
+node_modules/
+
+# Збірка
+dist/
+dist-ssr/
+
+# Логи
+*.log
+npm-debug.log*
+
+# Локальні змінні середовища (якщо будеш використовувати)
+.env
+.env.local
+.env.*.local
+
+# Редактор
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS
+.DS_Store
+Thumbs.db
