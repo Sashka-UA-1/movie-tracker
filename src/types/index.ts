@@ -22,7 +22,7 @@ export interface Profile {
 // ─── Медіа ───────────────────────────────────────────────────
 
 /** Тип контенту */
-export type MediaType = 'movie' | 'series' | 'cartoon'
+export type MediaType = 'movie' | 'series' | 'cartoon' | 'tvshow' | 'anime'
 
 /** Оцінки кожного з друзів (ключ — ProfileId, значення — 1..5).
  *  Якщо ключа немає — людина ще не оцінила. */
