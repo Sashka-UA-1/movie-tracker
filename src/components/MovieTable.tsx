@@ -22,7 +22,7 @@ export function MovieTable({ items, currentProfile, activeTab, onTabChange, onRa
 
   const filtered = (() => {
     switch (activeTab) {
-      case 'movie': case 'series': case 'cartoon':
+      case 'movie': case 'series': case 'cartoon': case 'tvshow': case 'anime':
         return items.filter(i => i.type === activeTab)
       case 'watched': return items.filter(i => isWatched(i))
       case 'unseen':  return items.filter(i => !isWatched(i))
