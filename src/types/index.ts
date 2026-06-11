@@ -17,6 +17,7 @@ export interface Profile {
   initials: string   // літера для аватара
   color: string      // фон аватара
   textColor: string  // колір тексту аватара
+  addItem: string    // відображуване ім'я хто додавав
 }
 
 // ─── Медіа ───────────────────────────────────────────────────

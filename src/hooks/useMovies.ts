@@ -6,14 +6,15 @@
 // Схема:
 //   fetchMovies()   → GET ?action=list   → читає з Sheets
 //   saveRating(...) → GET ?action=rate   → пише в Sheets
+//   addItem(...)    → GET ?action=add    → додає рядок у Sheets
 //
 // Polling кожні 30 секунд — щоб бачити зміни інших
 // (якщо хтось редагував таблицю напряму).
 // ─────────────────────────────────────────────────────────────
 
 import { useState, useEffect, useCallback } from 'react'
-import type { MovieItem, ProfileId } from '@/types'
-import { fetchMovies, saveRating } from '@/api/sheets'
+import type { MovieItem, ProfileId, MovieFormData } from '@/types'
+import { fetchMovies, saveRating, addItem as apiAddItem } from '@/api/sheets'
 import { updateRating } from '@/utils/helpers'
 
 const POLL_INTERVAL = 30_000 // оновлювати кожні 30 секунд
@@ -24,12 +25,13 @@ interface UseMoviesReturn {
   error: string | null
   refresh: () => Promise<void>
   updateRatingOnly: (id: string, profileId: ProfileId, rating: number) => Promise<void>
+  addItem: (data: MovieFormData, profileId: ProfileId) => Promise<string | null>
 }
 
 export function useMovies(): UseMoviesReturn {
-  const [items, setItems]     = useState<MovieItem[]>([])
+  const [items, setItems] = useState<MovieItem[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError]     = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   // ── Завантаження списку ──────────────────────────────────
   const load = useCallback(async () => {
@@ -53,6 +55,31 @@ export function useMovies(): UseMoviesReturn {
     const interval = setInterval(load, POLL_INTERVAL)
     return () => clearInterval(interval)
   }, [load])
+
+  // ── Додавання нового рядка (додавання фільму) ─────────────
+  const addItem = async (data: MovieFormData, profileId: ProfileId): Promise<string | null> => {
+    try {
+      const id = await apiAddItem(data, profileId)
+
+      const newItem: MovieItem = {
+        id,
+        title: data.title,
+        type: data.type,
+        note: data.note,
+        owner: profileId,
+        createdAt: Date.now(),
+        ratings: {}
+      }
+
+      // Додаємо новий елемент одразу в UI
+      setItems(prev => [newItem, ...prev])
+      return id
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Невідома помилка'
+      setError(`Не вдалось додати фільм. ${msg}`)
+      return null
+    }
+  }
 
   // ── Збереження своєї оцінки ─────────────────────────────
   // Оптимістичне оновлення: UI змінюється одразу,
@@ -83,5 +110,5 @@ export function useMovies(): UseMoviesReturn {
     }
   }
 
-  return { items, loading, error, refresh: load, updateRatingOnly }
+  return { items, loading, error, refresh: load, updateRatingOnly, addItem }
 }

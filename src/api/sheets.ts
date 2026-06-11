@@ -7,7 +7,7 @@
 // ⚠️  Після розгортання Apps Script вставити URL сюди:
 // ─────────────────────────────────────────────────────────────
 
-import type { MovieItem, ProfileId } from '@/types'
+import type { MovieItem, ProfileId, MovieFormData } from '@/types'
 
 // URL твого Apps Script Web App
 // Виглядає так: https://script.google.com/macros/s/AKfy.../exec
@@ -23,6 +23,12 @@ interface ListResponse {
 
 interface RateResponse {
   ok: boolean
+  error?: string
+}
+
+interface AddResponse {
+  ok: boolean
+  id?: string
   error?: string
 }
 
@@ -59,4 +65,29 @@ export async function saveRating(
 
   const json: RateResponse = await res.json()
   if (!json.ok) throw new Error(json.error ?? 'Помилка збереження оцінки')
+}
+
+// ─── GET додавання нового запису ─────────────────────────────
+// Використовуємо GET через обмеження Apps Script
+
+export async function addItem(
+  data: MovieFormData,
+  owner: ProfileId,
+  createdAt: number = Date.now()
+): Promise<string> {
+  const url = new URL(SCRIPT_URL)
+  url.searchParams.set('action', 'add')
+  url.searchParams.set('title', data.title)
+  url.searchParams.set('type', data.type)
+  url.searchParams.set('note', data.note)
+  url.searchParams.set('owner', owner)
+  url.searchParams.set('createdAt', String(createdAt))
+
+  const res = await fetch(url.toString())
+  if (!res.ok) throw new Error(`HTTP помилка: ${res.status}`)
+
+  const json: AddResponse = await res.json()
+  if (!json.ok) throw new Error(json.error ?? 'Помилка додавання')
+
+  return json.id ?? ''
 }

@@ -1,11 +1,5 @@
-// ─────────────────────────────────────────────────────────────
 // src/components/MovieTable.tsx
-//
-// Таблиця — тільки перегляд + клік по своїй оцінці.
-// Редагування/видалення прибрано — це через Google Sheets.
-// ─────────────────────────────────────────────────────────────
-
-import type { MovieItem, Profile, TabFilter } from '@/types'
+import type { MovieItem, Profile, TabFilter, MediaType } from '@/types'
 import { PROFILES, TABS, MEDIA_TYPE_LABELS, MEDIA_TYPE_BADGE } from '@/utils/constants'
 import { isWatched } from '@/utils/helpers'
 import styles from './MovieTable.module.css'
@@ -16,18 +10,18 @@ interface Props {
   activeTab: TabFilter
   onTabChange: (tab: TabFilter) => void
   onRatingClick: (item: MovieItem, currentRating: number) => void
+  // onDelete прибрано
 }
+
+const MEDIA_TYPES: MediaType[] = ['movie', 'series', 'cartoon', 'tvshow', 'anime']
 
 export function MovieTable({ items, currentProfile, activeTab, onTabChange, onRatingClick }: Props) {
 
   const filtered = (() => {
-    switch (activeTab) {
-      case 'movie': case 'series': case 'cartoon': case 'tvshow': case 'anime':
-        return items.filter(i => i.type === activeTab)
-      case 'watched': return items.filter(i => isWatched(i))
-      case 'unseen':  return items.filter(i => !isWatched(i))
-      default: return items
-    }
+    if ((MEDIA_TYPES as string[]).includes(activeTab)) return items.filter(i => i.type === activeTab)
+    if (activeTab === 'watched') return items.filter(i => isWatched(i))
+    if (activeTab === 'unseen')  return items.filter(i => !isWatched(i))
+    return items
   })()
 
   return (
@@ -48,12 +42,7 @@ export function MovieTable({ items, currentProfile, activeTab, onTabChange, onRa
         {filtered.length === 0 ? (
           <div className={styles.empty}>
             <span className={styles.emptyIcon}>🎬</span>
-            <p>
-              {items.length === 0
-                ? 'Список порожній. Додай фільми у Google Sheets і натисни "Кінотрекер → Синхронізувати"'
-                : 'Нічого не знайдено за цим фільтром'
-              }
-            </p>
+            <p>{items.length === 0 ? 'Список порожній. Натисни + Додати' : 'Нічого не знайдено'}</p>
           </div>
         ) : (
           <table className={styles.table}>
@@ -63,14 +52,16 @@ export function MovieTable({ items, currentProfile, activeTab, onTabChange, onRa
                 <th className={styles.colType}>Тип</th>
                 <th className={styles.colNote}>Нотатка</th>
                 <th className={styles.colStatus}>
-                  Статус
-                  <span className={styles.autoHint}>авто</span>
+                  Статус<span className={styles.autoHint}>авто</span>
                 </th>
+                {/* Колонки оцінок — ініціали кожного */}
                 {PROFILES.map(p => (
                   <th key={p.id} className={styles.colRating} style={{ color: p.textColor }}>
                     {p.initials}
                   </th>
                 ))}
+                {/* Хто додав */}
+                <th className={styles.colOwner}>Додав</th>
               </tr>
             </thead>
             <tbody>
@@ -99,16 +90,19 @@ interface RowProps {
 }
 
 function MovieRow({ item, currentProfile, onRatingClick }: RowProps) {
-  const watched = isWatched(item)
+  const watched   = isWatched(item)
+  const typeLabel = MEDIA_TYPE_LABELS[item.type] ?? item.type
+  const typeBadge = MEDIA_TYPE_BADGE[item.type]  ?? 'badge-movie'
+
+  // Знаходимо профіль того хто додав — для кольорового аватара
+  const ownerProfile = PROFILES.find(p => p.id === item.owner)
 
   return (
     <tr className={styles.row}>
       <td className={styles.titleCell}>{item.title}</td>
 
       <td>
-        <span className={`${styles.badge} ${styles[MEDIA_TYPE_BADGE[item.type]]}`}>
-          {MEDIA_TYPE_LABELS[item.type]}
-        </span>
+        <span className={`${styles.badge} ${styles[typeBadge]}`}>{typeLabel}</span>
       </td>
 
       <td>
@@ -125,10 +119,10 @@ function MovieRow({ item, currentProfile, onRatingClick }: RowProps) {
         </span>
       </td>
 
+      {/* Оцінки */}
       {PROFILES.map(p => {
-        const val = item.ratings?.[p.id] ?? 0
+        const val  = item.ratings?.[p.id] ?? 0
         const isMe = p.id === currentProfile.id
-
         return (
           <td key={p.id} className={styles.ratingCell}>
             <div
@@ -141,6 +135,21 @@ function MovieRow({ item, currentProfile, onRatingClick }: RowProps) {
           </td>
         )
       })}
+
+      {/* Хто додав — кольоровий аватар */}
+      <td className={styles.ownerCell}>
+        {ownerProfile ? (
+          <div
+            className={styles.ownerAvatar}
+            style={{ background: ownerProfile.color, color: ownerProfile.textColor }}
+            title={ownerProfile.name}
+          >
+            {ownerProfile.initials}
+          </div>
+        ) : (
+          <span className={styles.noteEmpty}>—</span>
+        )}
+      </td>
     </tr>
   )
 }

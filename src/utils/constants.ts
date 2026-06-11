@@ -10,45 +10,45 @@ import type { Profile, MediaType, TabFilter } from '@/types'
 // ─── Профілі чотирьох друзів ─────────────────────────────────
 
 export const PROFILES: Profile[] = [
-  { id: 'yasya',  name: 'Яся',  initials: 'Я', color: '#FAECE7', textColor: '#993C1D' },
-  { id: 'dima',   name: 'Діма', initials: 'Д', color: '#E1F5EE', textColor: '#0F6E56' },
-  { id: 'zhenya', name: 'Женя', initials: 'Ж', color: '#EEEDFE', textColor: '#534AB7' },
-  { id: 'sasha',  name: 'Саша', initials: 'С', color: '#FAEEDA', textColor: '#854F0B' },
+  { id: 'yasya', name: 'Яся', initials: 'Я', color: '#FAECE7', textColor: '#993C1D', addItem: 'Яся' },
+  { id: 'dima', name: 'Діма', initials: 'Д', color: '#E1F5EE', textColor: '#0F6E56', addItem: 'Діма' },
+  { id: 'zhenya', name: 'Женя', initials: 'Ж', color: '#EEEDFE', textColor: '#534AB7', addItem: 'Женя' },
+  { id: 'sasha', name: 'Саша', initials: 'С', color: '#FAEEDA', textColor: '#854F0B', addItem: 'Саша' },
 ]
 
 // ─── Мітки типів контенту ────────────────────────────────────
 
 export const MEDIA_TYPE_LABELS: Record<MediaType, string> = {
-  movie:   '🎬 Фільм',
-  series:  '📺 Серіал',
+  movie: '🎬 Фільм',
+  series: '📺 Серіал',
   cartoon: '🎨 Мультик',
-  tvshow:  '🕺 Теле-шоу',
-  anime:   '🙃 Аніме',
+  tvshow: '🕺 Теле-шоу',
+  anime: '🙃 Аніме',
 }
 
 // ─── CSS-класи бейджів типів ──────────────────────────────────
 
 export const MEDIA_TYPE_BADGE: Record<MediaType, string> = {
-  movie:   'badge-movie',
-  series:  'badge-series',
+  movie: 'badge-movie',
+  series: 'badge-series',
   cartoon: 'badge-cartoon',
-  tvshow:  'badge-tvshow',
-  anime:   'badge-anime',
+  tvshow: 'badge-tvshow',
+  anime: 'badge-anime',
 }
 
 // ─── Вкладки головного екрану ────────────────────────────────
 
 export const TABS: { id: TabFilter; label: string }[] = [
-  { id: 'all',     label: 'Всі' },
-  { id: 'movie',   label: 'Фільми' },
-  { id: 'series',  label: 'Серіали' },
+  { id: 'all', label: 'Всі' },
+  { id: 'movie', label: 'Фільми' },
+  { id: 'series', label: 'Серіали' },
   { id: 'cartoon', label: 'Мультики' },
-  { id: 'tvshow',  label: 'Теле-шоу' },
-  { id: 'anime',   label: 'Аніме' },
+  { id: 'tvshow', label: 'Теле-шоу' },
+  { id: 'anime', label: 'Аніме' },
   { id: 'watched', label: 'Переглянуто' },
-  { id: 'unseen',  label: 'Не переглянуто' },
+  { id: 'unseen', label: 'Не переглянуто' },
 ]
- 
+
 // ─── Назва колекції Firestore ─────────────────────────────────
 // Змінюй тут — не шукай по всіх файлах
 

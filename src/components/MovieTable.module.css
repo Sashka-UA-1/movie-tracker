@@ -87,12 +87,30 @@
 }
 
 /* ── Ширини колонок ── */
-.colTitle   { width: 22%; }
-.colType    { width: 14%; }
-.colNote    { width: 22%; }
-.colStatus  { width: 15%; }
-.colRating  { width: 7%; text-align: center; }
-.colActions { width: 6%; }
+.colTitle {
+  width: 22%;
+}
+
+.colType {
+  width: 14%;
+}
+
+.colNote {
+  width: 22%;
+}
+
+.colStatus {
+  width: 15%;
+}
+
+.colRating {
+  width: 7%;
+  text-align: center;
+}
+
+.colActions {
+  width: 6%;
+}
 
 /* ── Назва ── */
 .titleCell {
@@ -110,11 +128,30 @@
 }
 
 /* Кольори бейджів — мають збігатись з MediaType */
-.badge-movie   { background: #E6F1FB; color: #0C447C; }
-.badge-series  { background: #EEEDFE; color: #3C3489; }
-.badge-cartoon { background: #EAF3DE; color: #27500A; }
-.badge-tvshow  { background: #EAF3DE; color: #80df3c; }
-.badge-anime   { background: #EAF3DE; color: #0a5027; }
+.badge-movie {
+  background: #E6F1FB;
+  color: #0C447C;
+}
+
+.badge-series {
+  background: #EEEDFE;
+  color: #3C3489;
+}
+
+.badge-cartoon {
+  background: #EAF3DE;
+  color: #27500A;
+}
+
+.badge-tvshow {
+  background: #EAF3DE;
+  color: #80df3c;
+}
+
+.badge-anime {
+  background: #EAF3DE;
+  color: #0a5027;
+}
 
 /* ── Нотатка ── */
 .note {
@@ -157,8 +194,13 @@
   flex-shrink: 0;
 }
 
-.dotWatched { background: #639922; }
-.dotUnseen  { background: #B4B2A9; }
+.dotWatched {
+  background: #639922;
+}
+
+.dotUnseen {
+  background: #B4B2A9;
+}
 
 /* ── Комірка оцінки ── */
 .ratingCell {
