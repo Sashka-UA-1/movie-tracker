@@ -28,6 +28,7 @@ export function ProfileScreen({ onSelect }: Props) {
           <button
             key={profile.id}
             className={styles.card}
+            style={{ background: profile.bgColor }}
             onClick={() => onSelect(profile)}
           >
             {/* Аватар — кольоровий кружок з ініціалом */}
@@ -38,7 +39,12 @@ export function ProfileScreen({ onSelect }: Props) {
               {profile.initials}
             </div>
 
-            <span className={styles.name}>{profile.name}</span>
+            <span
+              className={styles.name}
+              style={{ color: profile.color }}
+            >
+              {profile.name}
+            </span>
           </button>
         ))}
       </div>

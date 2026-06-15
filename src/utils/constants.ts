@@ -10,10 +10,42 @@ import type { Profile, MediaType, TabFilter } from '@/types'
 // ─── Профілі чотирьох друзів ─────────────────────────────────
 
 export const PROFILES: Profile[] = [
-  { id: 'yasya', name: 'Яся', initials: 'Я', color: '#FAECE7', textColor: '#993C1D', addItem: 'Яся' },
-  { id: 'dima', name: 'Діма', initials: 'Д', color: '#E1F5EE', textColor: '#0F6E56', addItem: 'Діма' },
-  { id: 'zhenya', name: 'Женя', initials: 'Ж', color: '#EEEDFE', textColor: '#534AB7', addItem: 'Женя' },
-  { id: 'sasha', name: 'Саша', initials: 'С', color: '#FAEEDA', textColor: '#854F0B', addItem: 'Саша' },
+  {
+    id: 'yasya',
+    name: 'Яся',
+    initials: 'Я',
+    color: '#cf8d8e',
+    bgColor: '#825859',
+    textColor: '#352424',
+    addItem: 'Яся'
+  },
+  {
+    id: 'dima',
+    name: 'Діма',
+    initials: 'Д',
+    color: '#ffffff',
+    bgColor: '#b2b2b2',
+    textColor: '#656565',
+    addItem: 'Діма'
+  },
+  {
+    id: 'zhenya',
+    name: 'Женя',
+    initials: 'Ж',
+    color: '#ff00ff',
+    bgColor: '#b200b2',
+    textColor: '#650065',
+    addItem: 'Женя'
+  },
+  {
+    id: 'sasha',
+    name: 'Саша',
+    initials: 'С',
+    color: '#ff9900',
+    bgColor: '#b26b00',
+    textColor: '#653d00',
+    addItem: 'Саша'
+  },
 ]
 
 // ─── Мітки типів контенту ────────────────────────────────────
