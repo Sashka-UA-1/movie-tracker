@@ -1,7 +1,7 @@
 {
-  "name": "movie-tracker",
-  "version": "1.0.0",
-  "description": "Спільний трекер фільмів для друзів",
+  "name": "☕️☕️☕️☕️",
+  "version": "2.0.0",
+  "description": "WEB-додаток для друзів, кожного дня тижня",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
