@@ -36,7 +36,9 @@
 }
 
 @keyframes subtlePulse {
-  0%,100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
