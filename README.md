@@ -22,7 +22,7 @@
 src/
 ├── components/
 │   ├── ProfileScreen.tsx     # Екран вибору профілю
-│   ├── MainScreen.tsx        # Головний екран (оркестрація)
+│   ├── MovieScreen.tsx        # Головний екран (оркестрація)
 │   ├── MovieTable.tsx        # Таблиця зі списком фільмів
 │   └── MovieModal.tsx        # Модал додавання / редагування
 ├── hooks/

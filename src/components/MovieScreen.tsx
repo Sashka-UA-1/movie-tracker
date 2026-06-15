@@ -1,24 +1,23 @@
-// src/components/MainScreen.tsx
 import { useState } from 'react'
 import type { Profile, MovieItem, TabFilter, MovieFormData } from '@/types'
 import { useMovies } from '@/hooks/useMovies'
 import { MovieTable } from './MovieTable'
 import { MovieModal } from './MovieModal'
 import { RatingModal } from './RatingModal'
-import styles from './MainScreen.module.css'
+import styles from './MovieScreen.module.css'
 
 interface Props {
   profile: Profile
   onSwitchProfile: () => void
 }
 
-export function MainScreen({ profile, onSwitchProfile }: Props) {
+export function MovieScreen({ profile, onSwitchProfile }: Props) {
   const { items, loading, error, refresh, addItem, updateRatingOnly } = useMovies()
 
-  const [activeTab, setActiveTab]       = useState<TabFilter>('all')
+  const [activeTab, setActiveTab] = useState<TabFilter>('all')
   const [addModalOpen, setAddModalOpen] = useState(false)
   const [ratingTarget, setRatingTarget] = useState<{ item: MovieItem; current: number } | null>(null)
-  const [saving, setSaving]             = useState(false)
+  const [saving, setSaving] = useState(false)
 
   // ── Додати фільм ─────────────────────────────────────────
   // Якщо користувач поставив оцінку при додаванні — зберігаємо її теж
