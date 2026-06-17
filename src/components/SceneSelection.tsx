@@ -25,10 +25,24 @@ export function SceneSelection({ onChooseMain }: Props) {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Вибір сцени</h2>
+      <h2 className={styles.title}>
+        Сьогодні {
+          (() => {
+            switch (new Date().getDay()) {
+              case 1:
+                return 'ми в ад'
+              case 2:
+                return 'день пар'
+              default:
+                return 'день випадковості'
+            }
+          })()
+        }
+      </h2>
       <button
         className={btnClass}
         onClick={onChooseMain}
-        style={{ background: bg }}
+        style={{ background: bg, textShadow: '0 0 5px 1rem #111' }}
       >
         Перейти за 4-а билетами в ад, пожалуйста
       </button>
