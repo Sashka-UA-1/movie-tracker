@@ -20,7 +20,7 @@ export function MovieTable({ items, currentProfile, activeTab, onTabChange, onRa
   const filtered = (() => {
     if ((MEDIA_TYPES as string[]).includes(activeTab)) return items.filter(i => i.type === activeTab)
     if (activeTab === 'watched') return items.filter(i => isWatched(i))
-    if (activeTab === 'unseen')  return items.filter(i => !isWatched(i))
+    if (activeTab === 'unseen') return items.filter(i => !isWatched(i))
     return items
   })()
 
@@ -56,7 +56,7 @@ export function MovieTable({ items, currentProfile, activeTab, onTabChange, onRa
                 </th>
                 {/* Колонки оцінок — ініціали кожного */}
                 {PROFILES.map(p => (
-                  <th key={p.id} className={styles.colRating} style={{ color: p.textColor }}>
+                  <th key={p.id} className={styles.colRating} style={{ color: p.textColor, textShadow: '0 0 1rem 1rem #fff' }}>
                     {p.initials}
                   </th>
                 ))}
@@ -90,9 +90,9 @@ interface RowProps {
 }
 
 function MovieRow({ item, currentProfile, onRatingClick }: RowProps) {
-  const watched   = isWatched(item)
+  const watched = isWatched(item)
   const typeLabel = MEDIA_TYPE_LABELS[item.type] ?? item.type
-  const typeBadge = MEDIA_TYPE_BADGE[item.type]  ?? 'badge-movie'
+  const typeBadge = MEDIA_TYPE_BADGE[item.type] ?? 'badge-movie'
 
   // Знаходимо профіль того хто додав — для кольорового аватара
   const ownerProfile = PROFILES.find(p => p.id === item.owner)
@@ -121,7 +121,7 @@ function MovieRow({ item, currentProfile, onRatingClick }: RowProps) {
 
       {/* Оцінки */}
       {PROFILES.map(p => {
-        const val  = item.ratings?.[p.id] ?? 0
+        const val = item.ratings?.[p.id] ?? 0
         const isMe = p.id === currentProfile.id
         return (
           <td key={p.id} className={styles.ratingCell}>
