@@ -45,10 +45,8 @@ export function SceneSelection({ onChooseMain }: Props) {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Вибір сцени</h2>
-      <h2 className={styles.title}>
-        Сьогодні {whatDay()}
-      </h2>
+      <h2 className={styles.title}>Сьогодні {whatDay()}</h2>
+      <h2 className={styles.title}>Що обираємо?</h2>
       <button
         className={btnClass}
         onClick={onChooseMain}
