@@ -32,9 +32,15 @@ export function SceneSelection({ onChooseMain }: Props) {
               case 1:
                 return 'ми в ад'
               case 2:
-                return 'день пар'
+                return 'вечер "Наш вечер"'
+              case 5:
+                return 'вечер "Наш вечер"'
+              case 6:
+                return 'вечер настолок'
+              case 7:
+                return 'вечер "Наш вечер"'
               default:
-                return 'день випадковості'
+                return 'вечер випадковості'
             }
           })()
         }
