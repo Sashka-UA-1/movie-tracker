@@ -33,8 +33,10 @@ export function SceneSelection({ onChooseMain }: Props) {
                 return 'ми в ад'
               case 2:
                 return 'вечер "Наш вечер"'
-              case 5:
+              case 4:
                 return 'вечер "Наш вечер"'
+              case 5:
+                return 'вечер настолок'
               case 6:
                 return 'вечер настолок'
               case 7:
