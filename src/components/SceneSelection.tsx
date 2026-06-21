@@ -24,20 +24,21 @@ export function SceneSelection({ onChooseMain }: Props) {
 
   const whatDay = () => {
     switch (new Date().getDay()) {
-      case 0: // пн
+      case 0: // вс
+        return 'вечер "Наш вечер"'
+      case 1: // пн
         return 'ми в ад за куліси'
-      case 1: // вт
+      case 2: // вт
         return 'вечер "Наш вечер"'
-      case 2: // ср
+      case 3: // ср
         return 'вечер випадковості'
-      case 3: // чт
+      case 4: // чт
         return 'вечер випадковості'
-      case 4: // пт
+      case 5: // пт
         return 'вечер "Наш вечер"'
-      case 5: // сб
+      case 6: // сб
         return 'вечер настолок'
-      case 6: // вс
-        return 'вечер "Наш вечер"'
+      
       default:
         return 'вечер випадковості'
     }
